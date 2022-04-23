@@ -22,4 +22,7 @@ The following section details the thought process/approach to developing the ana
 
 Initially, I need to import the numpy and matplotlib. This will import the functionlity required to generate the histogram and scatter plot, making the functionality available alter in the script.
 
-I then need to access the file that contains the data we wish to analyse
+I then need to access the file that contains the data we wish to analyse, I can open this file as read only as I do not wish to edit or write to the data file. I also want the user to be able to specify the filename to be imported, allowing the script to be used for other data sources in the future. 
+The first problem I can see is how do I identify what the data relates to when used for other applications, it is quite simple to assign a title to each attribute in the context of the project but using it on various other files/datasets with different attributes is a challenge. My initial solution to this problem is to ensure that the attribute description is passed in by the user when runnning the script. In order to run the file, in the terminal the user will need to:
+1. run the script
+2. Specify the file name
