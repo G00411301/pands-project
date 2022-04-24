@@ -4,18 +4,11 @@
 
 
 #import numpy and matplotlip - making the resources available later in the file for chart generation.
-from enum import unique
-import numpy as np
-import matplotlib.pyplot as plt
 
-# Import the sys module which gives the script access to arguments passed in through the terminal. This allows users to specify the file that they wish to perform the analysis on.
-import sys
-
-# Import CSV module which provides resources for working with CSV files - source https://www.youtube.com/watch?v=q5uM4VKywbA
-import csv
-
-#import pandas module for data analysis later in the script
-import pandas as pd
+import matplotlib.pyplot as plt #import numpy and matplotlip - making the resources available later in the file for chart generation.
+import sys # Import the sys module which gives the script access to arguments passed in through the terminal. This allows users to specify the file that they wish to perform the analysis on.
+import csv # Import CSV module which provides resources for working with CSV files - source https://www.youtube.com/watch?v=q5uM4VKywbA
+import pandas as pd # import pandas module for data analysis later in the script
 
 #Filename = None as the filename will be passed in by the user. startingpoint = 0 as I want the file to be read from the beginning. It may be useful to be able to set the startpoint as a date if using time series data and you wish to specify the start date for your analysis.
 filename = None
@@ -75,20 +68,16 @@ if fileHeading == "n":
 df = pd.read_csv(filename)
 
 #get the average of the each of the attributes included in the csv file using pandas
-print ("The average/mean of the values included in", filename, "are:")
-print (df.mean(axis='index', numeric_only=True))
+summaryMean = (df.mean(axis='index', numeric_only=True))
 
 #get the maximum value of the each of the attributes included in the csv file using pandas
-print ("The maximum of the values included in", filename, "are:")
-print (df.max(axis='index', numeric_only=True))
+summaryMax = (df.max(axis='index', numeric_only=True))
 
 #get the minimum value of the each of the attributes included in the csv file using pandas
-print ("The minimum of the values included in", filename, "are:")
-print (df.min(axis='index', numeric_only=True))
+summaryMin = (df.min(axis='index', numeric_only=True))
 
 #get the standard deviation of the each of the attributes included in the csv file using pandas
-print ("The standard deviation of the values included in", filename, "are:")
-print (df.std(axis='index', numeric_only=True))
+summaryStd = (df.std(axis='index', numeric_only=True))
 
 #I want to plot each of the attributes on seperate scatter graphsto do this, I call on matplotlib 
 #In order to set the limits of the chart, I find the max and min of the entire data frame
@@ -121,6 +110,10 @@ for i in chartTitles:
     histIndex += 1 #increase the index to generate the histogram for the next attribute
 
 correlation = df.corr() #find the correlation between each of the value in the dataframe
-print (correlation) # print correlation
+summaryCorr = (correlation) # print correlation
 
-
+with open('Summary data file -' + filename+'.txt', 'w') as f: #Creating a txt file to write summary data to
+    f.write("Average:\n"  + str(summaryMean) +"\n" + "\n" + 
+    "Maximum Value:\n" + str(summaryMax) +"\n" + "\n" + 
+    "Minimum Value:\n" + str(summaryMin) + "\n" + "\n"  + 
+    "Correlation:\n" + str(summaryCorr) )

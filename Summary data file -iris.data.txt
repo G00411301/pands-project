@@ -1,0 +1,27 @@
+Average:
+Sepal_Length_(cm)    5.843333
+Sepal_Width_(cm)     3.054000
+Petal_Length_(cm)    3.758667
+Petal_Width_(cm)     1.198667
+dtype: float64
+
+Maximum Value:
+Sepal_Length_(cm)    7.9
+Sepal_Width_(cm)     4.4
+Petal_Length_(cm)    6.9
+Petal_Width_(cm)     2.5
+dtype: float64
+
+Minimum Value:
+Sepal_Length_(cm)    4.3
+Sepal_Width_(cm)     2.0
+Petal_Length_(cm)    1.0
+Petal_Width_(cm)     0.1
+dtype: float64
+
+Correlation:
+                   Sepal_Length_(cm)  Sepal_Width_(cm)  Petal_Length_(cm)  Petal_Width_(cm)
+Sepal_Length_(cm)           1.000000         -0.109369           0.871754          0.817954
+Sepal_Width_(cm)           -0.109369          1.000000          -0.420516         -0.356544
+Petal_Length_(cm)           0.871754         -0.420516           1.000000          0.962757
+Petal_Width_(cm)            0.817954         -0.356544           0.962757          1.000000
