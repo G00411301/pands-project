@@ -69,28 +69,42 @@ if fileHeading == "n":
     df.to_csv(filename, header=inputList, index=False)
     
 
-    print ("File to be analysed:", filename, ", Number of arguments to be analysed:", numAttributes)
-    print ("Attributes included in analysis: ", inputList)
-
-
-print ("Your file has headings")
-
 #I now need to open the csv in read in order to read the data within the csv file for use in calculations
 
+df = pd.read_csv(filename)
+
+#get the average of the each of the attributes included in the csv file
+print ("The average/mean of the values included in", filename, "are:")
+print (df.mean(axis='index', numeric_only=True))
+
+print ("The maximum of the values included in", filename, "are:")
+print (df.max(axis='index', numeric_only=True))
+
+print ("The minimum of the values included in", filename, "are:")
+print (df.min(axis='index', numeric_only=True))
+
+print ("The standard deviation of the values included in", filename, "are:")
+print (df.min(axis='index', numeric_only=True))
+
+
+
+'''
 with open (filename, 'r') as f:
     csvReader = csv.DictReader(f)
-
-    #getting a list of all of the dictionary keys within the file
-    attributeNames = list(csvReader.fieldnames)
-    print (attributeNames)
-    print (len(attributeNames))
-    print (attributeNames[0])
-
-    #Now I need to loop through each of the attrubutes, conducting analysis on each one and printing the results attribute by attribute. I will use the number of fields in the attributenames list to limit the number of loops.
-    
-
+    numOfCols = len(csvReader.fieldnames)
     
 
 
-    #for line in csvReader:
-    #   print(line['test1'])
+limit = numOfCols-1
+print (limit)
+
+index = 0
+while index < numOfCols+1:
+    df = pd.read_csv(filename, usecols=[index])
+    print (df)
+    df.mean(axes ='index')
+
+    index += 1
+    if index > limit:
+        break
+'''
