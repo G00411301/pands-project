@@ -4,6 +4,7 @@
 
 
 #import numpy and matplotlip - making the resources available later in the file for chart generation.
+from enum import unique
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -73,20 +74,52 @@ if fileHeading == "n":
 
 df = pd.read_csv(filename)
 
-#get the average of the each of the attributes included in the csv file
+#get the average of the each of the attributes included in the csv file using pandas
 print ("The average/mean of the values included in", filename, "are:")
 print (df.mean(axis='index', numeric_only=True))
 
+#get the maximum value of the each of the attributes included in the csv file using pandas
 print ("The maximum of the values included in", filename, "are:")
 print (df.max(axis='index', numeric_only=True))
 
+#get the minimum value of the each of the attributes included in the csv file using pandas
 print ("The minimum of the values included in", filename, "are:")
 print (df.min(axis='index', numeric_only=True))
 
+#get the standard deviation of the each of the attributes included in the csv file using pandas
 print ("The standard deviation of the values included in", filename, "are:")
-print (df.min(axis='index', numeric_only=True))
+print (df.std(axis='index', numeric_only=True))
 
+#I want to plot each of the attributes on seperate scatter graphsto do this, I call on matplotlib 
+#In order to set the limits of the chart, I find the max and min of the entire data frame
 
+maxValue = max((df.max(axis='index', numeric_only=True)))
+minValue = min((df.min(axis='index', numeric_only=True)))
+
+#Getting field names for chart from CSV file
+with open (filename, 'r') as f:
+    csvReader = csv.DictReader(f)
+    chartTitles = list(csvReader.fieldnames)
+
+#getting teh number of rows in the dataframe
+noRows = df.shape[0]
+
+index = 0
+
+for i in chartTitles:
+    chartname = (chartTitles[index])
+    plt.ylim(minValue *0.9 ,maxValue *1.1) #setting the limits of the chart to be the 90% of the minimum value and 110% of the maximum value
+    plt.title("Scatter Plot of Attribute: " + chartTitles[index]) #importing the field names in the data set as the chart title
+    plt.scatter(x=df.index, y=df[chartTitles[index]]) # plotting the scatter graphs
+    plt.show() # displaying the scatter plot
+    index += 1 #increase the index to generate the scatter plot for the next attribute
+
+histIndex =0
+for i in chartTitles:
+    plt.title("Histogram of Attribute: " + chartTitles[histIndex]) #histogram chart titles
+    plt.hist(df[chartTitles[histIndex]], bins = 5) #selectring data for the histgrams and specifying the number of bins in the histogram
+    plt.show() #display the histogram
+    histIndex += 1 #increase the index to generate the histogram for the next attribute
 
 '''
 with open (filename, 'r') as f:
