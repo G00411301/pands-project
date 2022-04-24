@@ -101,9 +101,6 @@ with open (filename, 'r') as f:
     csvReader = csv.DictReader(f)
     chartTitles = list(csvReader.fieldnames)
 
-#getting teh number of rows in the dataframe
-noRows = df.shape[0]
-
 index = 0
 
 for i in chartTitles:
@@ -111,33 +108,19 @@ for i in chartTitles:
     plt.ylim(minValue *0.9 ,maxValue *1.1) #setting the limits of the chart to be the 90% of the minimum value and 110% of the maximum value
     plt.title("Scatter Plot of Attribute: " + chartTitles[index]) #importing the field names in the data set as the chart title
     plt.scatter(x=df.index, y=df[chartTitles[index]]) # plotting the scatter graphs
-    plt.show() # displaying the scatter plot
+    plt.savefig(chartTitles[index]+" Scatter.png") #creates and saves an image of the scatter plot in the local directory
+    plt.close() #need to close current function as it was compounding data on the saved graphs
     index += 1 #increase the index to generate the scatter plot for the next attribute
 
 histIndex =0
 for i in chartTitles:
     plt.title("Histogram of Attribute: " + chartTitles[histIndex]) #histogram chart titles
     plt.hist(df[chartTitles[histIndex]], bins = 5) #selectring data for the histgrams and specifying the number of bins in the histogram
-    plt.show() #display the histogram
+    plt.savefig(chartTitles[histIndex]+" Histogram.png") #creates and saves an image of the histogram in the local directory
+    plt.close() #need to close current function as it was compounding data on the saved graphs
     histIndex += 1 #increase the index to generate the histogram for the next attribute
 
-'''
-with open (filename, 'r') as f:
-    csvReader = csv.DictReader(f)
-    numOfCols = len(csvReader.fieldnames)
-    
+correlation = df.corr() #find the correlation between each of the value in the dataframe
+print (correlation) # print correlation
 
 
-limit = numOfCols-1
-print (limit)
-
-index = 0
-while index < numOfCols+1:
-    df = pd.read_csv(filename, usecols=[index])
-    print (df)
-    df.mean(axes ='index')
-
-    index += 1
-    if index > limit:
-        break
-'''
