@@ -19,6 +19,13 @@ Petal_Length_(cm)    1.0
 Petal_Width_(cm)     0.1
 dtype: float64
 
+Standard Deviation:
+Sepal_Length_(cm)    0.828066
+Sepal_Width_(cm)     0.433594
+Petal_Length_(cm)    1.764420
+Petal_Width_(cm)     0.763161
+dtype: float64
+
 Correlation:
                    Sepal_Length_(cm)  Sepal_Width_(cm)  Petal_Length_(cm)  Petal_Width_(cm)
 Sepal_Length_(cm)           1.000000         -0.109369           0.871754          0.817954

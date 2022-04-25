@@ -116,4 +116,5 @@ with open('Summary data file -' + filename+'.txt', 'w') as f: #Creating a txt fi
     f.write("Average:\n"  + str(summaryMean) +"\n" + "\n" + 
     "Maximum Value:\n" + str(summaryMax) +"\n" + "\n" + 
     "Minimum Value:\n" + str(summaryMin) + "\n" + "\n"  + 
+    "Standard Deviation:\n" + str(summaryStd) + "\n" + "\n"  + 
     "Correlation:\n" + str(summaryCorr) )
